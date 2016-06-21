@@ -25,7 +25,7 @@ static NSString *const kPageFlipTempViewKey = @"kPageFlipTempViewKey";
     [containerView addSubview:tempView];
     fromVC.view.hidden = YES;
     [containerView insertSubview:toVC.view atIndex:0];
-    [self _xw_setAnchorPointTo:CGPointMake(0, 0.5) forView:tempView];
+    [self _xw_setAnchorPoint:CGPointMake(0, 0.5) forView:tempView];
     CATransform3D transfrom3d = CATransform3DIdentity;
     transfrom3d.m34 = -0.002;
     containerView.layer.sublayerTransform = transfrom3d;
@@ -87,7 +87,7 @@ static NSString *const kPageFlipTempViewKey = @"kPageFlipTempViewKey";
     }];
 }
 
-- (void)_xw_setAnchorPointTo:(CGPoint)point forView:(UIView *)view{
+- (void)_xw_setAnchorPoint:(CGPoint)point forView:(UIView *)view{
     view.frame = CGRectOffset(view.frame, (point.x - view.layer.anchorPoint.x) * view.frame.size.width, (point.y - view.layer.anchorPoint.y) * view.frame.size.height);
     view.layer.anchorPoint = point;
 }
