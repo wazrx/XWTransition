@@ -31,20 +31,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)xw_addMagicMoveStartViewGroup:(NSArray<UIView *> *)group;
 
-/**
+ /**
  *  注册神奇移动终止视图
  *
  *  @param group 神奇移动终止视图数组，注意起始视图数组和终止视图数组的视图需要一一对应才能有正确的效果
  */
-- (void)xw_changeMagicMoveStartViewGroup:(NSArray<UIView *> *)group;
+- (void)xw_addMagicMoveEndViewGroup:(NSArray<UIView *> *)group;
 
 /**
  *  改变神奇移动起始视图，因为在back的时候，有可能不需要再回到原来起始的位置，需要去一个新的视图位置，所以在back前需要调用该方法改变起始视图数组
  *
  *  @param group 新的起始视图数组
  */
-- (void)xw_addMagicMoveEndViewGroup:(NSArray<UIView *> *)group;
-
+- (void)xw_changeMagicMoveStartViewGroup:(NSArray<UIView *> *)group;
 
 #pragma mark - 手势相关
 
