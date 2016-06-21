@@ -8,33 +8,39 @@ XWTransition是用来帮助你快速集成自定义转场的工具，使用它�
 
 1、CircleSpreadTransition 小圆点扩散
 
-![小圆点.gif](http://upload-images.jianshu.io/upload_images/1154055-2a49088774c281b0.gif?imageMogr2/auto-orient/strip)
+![小圆点.gif](http://upload-images.jianshu.io/upload_images/1154055-53a21fd1498a0547.gif?imageMogr2/auto-orient/strip)
 
 2、MagicMoveTransition 神奇移动
 
-![神奇移动.gif](http://upload-images.jianshu.io/upload_images/1154055-a6c0e5a10fbd5265.gif?imageMogr2/auto-orient/strip)
+
+![MagicMoveTransition1.gif](http://upload-images.jianshu.io/upload_images/1154055-7f2a7f9ff4590611.gif?imageMogr2/auto-orient/strip)
+![MagicMoveTransition2.gif](http://upload-images.jianshu.io/upload_images/1154055-3593e3b356bcf1de.gif?imageMogr2/auto-orient/strip)
 
 3、XWDrawerAnimator 抽屉效果，仿照QQ和淘宝
 
-![抽屉效果仿QQ.gif](http://upload-images.jianshu.io/upload_images/1154055-a964af23c86ed44c.gif?imageMogr2/auto-orient/strip)
-
-![抽屉效果仿淘宝.gif](http://upload-images.jianshu.io/upload_images/1154055-2f8f06b5d06a8601.gif?imageMogr2/auto-orient/strip)
+![XWDrawerAnimator1.gif](http://upload-images.jianshu.io/upload_images/1154055-7ce100b7d8de68d0.gif?imageMogr2/auto-orient/strip)
+![XWDrawerAnimator2.gif](http://upload-images.jianshu.io/upload_images/1154055-a955134f8fc57edd.gif?imageMogr2/auto-orient/strip)
 
 4、XWCoolAnimator 自定义一些效果
 
-![cool1.gif](http://upload-images.jianshu.io/upload_images/1154055-bdaf916fb810e586.gif?imageMogr2/auto-orient/strip)
-
-![cool2.gif](http://upload-images.jianshu.io/upload_images/1154055-b28590568f0456dc.gif?imageMogr2/auto-orient/strip)
-
-![cool3.gif](http://upload-images.jianshu.io/upload_images/1154055-573b2bc3c367396b.gif?imageMogr2/auto-orient/strip)
+![XWCoolAnimator2.gif](http://upload-images.jianshu.io/upload_images/1154055-b91aaa380658aea2.gif?imageMogr2/auto-orient/strip)
+![XWCoolAnimator1.gif](http://upload-images.jianshu.io/upload_images/1154055-11463b1600954cbf.gif?imageMogr2/auto-orient/strip)
+![XWCoolAnimator3.gif](http://upload-images.jianshu.io/upload_images/1154055-865c860ae815dee3.gif?imageMogr2/auto-orient/strip)
+![XWCoolAnimator4.gif](http://upload-images.jianshu.io/upload_images/1154055-4427d7a13724cab2.gif?imageMogr2/auto-orient/strip)
+![XWCoolAnimator5.gif](http://upload-images.jianshu.io/upload_images/1154055-16bb0fb9435edaa2.gif?imageMogr2/auto-orient/strip)
+![XWCoolAnimator6.gif](http://upload-images.jianshu.io/upload_images/1154055-7005cabfc86bff65.gif?imageMogr2/auto-orient/strip)
+![XWCoolAnimator7.gif](http://upload-images.jianshu.io/upload_images/1154055-491415eac763bd58.gif?imageMogr2/auto-orient/strip)
 
 5、XWFilterAnimator 通过CIFilter滤镜自定义一些效果，请在真机上运行
 
-![filter1.gif](http://upload-images.jianshu.io/upload_images/1154055-937287b869bf0592.gif?imageMogr2/auto-orient/strip)
-
-![filter2.gif](http://upload-images.jianshu.io/upload_images/1154055-88fb2396f02f0ac8.gif?imageMogr2/auto-orient/strip)
-
-![filter3.gif](http://upload-images.jianshu.io/upload_images/1154055-048231eecdbb932c.gif?imageMogr2/auto-orient/strip)
+![XWFilterAnimator1.gif](http://upload-images.jianshu.io/upload_images/1154055-de1a3e6ca1ce5c7a.gif?imageMogr2/auto-orient/strip)
+![XWFilterAnimator6.gif](http://upload-images.jianshu.io/upload_images/1154055-9f3805ba6198ac2b.gif?imageMogr2/auto-orient/strip)
+![XWFilterAnimator5.gif](http://upload-images.jianshu.io/upload_images/1154055-d98e03b7a08e8352.gif?imageMogr2/auto-orient/strip)
+![XWFilterAnimator4.gif](http://upload-images.jianshu.io/upload_images/1154055-b3ff2938f4079bd9.gif?imageMogr2/auto-orient/strip)
+![XWFilterAnimator3.gif](http://upload-images.jianshu.io/upload_images/1154055-931ca82d418e3801.gif?imageMogr2/auto-orient/strip)
+![XWFilterAnimator2.gif](http://upload-images.jianshu.io/upload_images/1154055-2aa75294d5097e20.gif?imageMogr2/auto-orient/strip)
+![XWFilterAnimator8.gif](http://upload-images.jianshu.io/upload_images/1154055-adbaa9592d501e00.gif?imageMogr2/auto-orient/strip)
+![XWFilterAnimator7.gif](http://upload-images.jianshu.io/upload_images/1154055-50bb0975c6fc4801.gif?imageMogr2/auto-orient/strip)
 
 ###基本使用
 
