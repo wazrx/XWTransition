@@ -8,7 +8,7 @@ XWTransition是用来帮助你快速集成自定义转场的工具，使用它�
 
 1、CircleSpreadTransition 小圆点扩散
 
-![小圆点.gif](http://upload-images.jianshu.io/upload_images/1154055-53a21fd1498a0547.gif?imageMogr2/auto-orient/strip)
+![CircleSpreadTransition.gif](http://upload-images.jianshu.io/upload_images/1154055-15cbfb7aefe2efcc.gif?imageMogr2/auto-orient/strip)
 
 2、MagicMoveTransition 神奇移动
 
