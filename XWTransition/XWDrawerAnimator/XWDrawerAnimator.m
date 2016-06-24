@@ -62,10 +62,10 @@
         fromTempView.layer.zPosition = -1000;
         [containerView addSubview:toVC.view];
     }
-    NSInteger symbol = _direction == XWDrawerAnimatorDirectionLeft || _direction == XWDrawerAnimatorDirectionTop ? -1 : 1;
-    CGFloat toViewStartx = _vertical ? 0 : (containerView.frame.size.width - fabs(parallaxDistance)) * symbol;
-    CGFloat toViewStartY = _vertical ? (containerView.frame.size.height - fabs(parallaxDistance)) * symbol : 0;
-    toVC.view.frame = CGRectOffset(containerView.bounds,toViewStartx, toViewStartY);
+    CGFloat width = _vertical ? toVC.view.frame.size.width : _distance;
+    CGFloat height = _vertical ? _distance : toVC.view.frame.size.height;
+    CGPoint startP = [self _xw_getStartPoint:containerView parallaxDistance:parallaxDistance];
+    toVC.view.frame = CGRectMake(startP.x, startP.y, width, height);
     fromVC.view.hidden = YES;
     CGAffineTransform transform = _vertical ? CGAffineTransformMakeTranslation(0, -(distance - parallaxDistance)) : CGAffineTransformMakeTranslation(-(distance - parallaxDistance), 0);
     [UIView animateKeyframesWithDuration:self.toDuration delay:0.0 options:0 animations:^{
@@ -98,6 +98,27 @@
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }];
     
+}
+
+/**
+ *  计算toView的起始point
+ */
+- (CGPoint)_xw_getStartPoint:(UIView *)containerView parallaxDistance:(CGFloat)parallaxDistance{
+    NSInteger symbol = _direction == XWDrawerAnimatorDirectionLeft || _direction == XWDrawerAnimatorDirectionTop ? -1 : 1;
+    switch (_direction) {
+        case XWDrawerAnimatorDirectionLeft: {
+            return CGPointMake((_distance - fabs(parallaxDistance)) *symbol, 0);
+        }
+        case XWDrawerAnimatorDirectionRight: {
+            return CGPointMake((containerView.frame.size.width - fabs(parallaxDistance)) *symbol, 0);
+        }
+        case XWDrawerAnimatorDirectionTop: {
+            return CGPointMake(0, (_distance - fabs(parallaxDistance)) *symbol);
+        }
+        case XWDrawerAnimatorDirectionBottom: {
+            return CGPointMake(0, (containerView.frame.size.height - fabs(parallaxDistance)) *symbol);
+        }
+    }
 }
 
 - (void)xw_setBackAnimation:(id<UIViewControllerContextTransitioning>)transitionContext{
