@@ -40,7 +40,7 @@
     _mainView.hidden = YES;
     __weak typeof(self)weakSelf = self;
     //注册back手势，左滑动黑色部分可以back
-    [self xw_registerBackInteractiveTransitionWithDirection:XWInteractiveTransitionGestureDirectionLeft transitonBlock:^{
+    [self xw_registerBackInteractiveTransitionWithDirection:XWInteractiveTransitionGestureDirectionLeft transitonBlock:^(CGPoint startPoint){
         [weakSelf collectionView:weakSelf.mainView didSelectItemAtIndexPath:[weakSelf.mainView indexPathsForVisibleItems].firstObject];
     } edgeSpacing:0];
 }

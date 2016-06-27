@@ -18,7 +18,7 @@
     [self.button setTitle:title forState:UIControlStateNormal];
     __weak typeof(self)weakSelf = self;
     XWInteractiveTransitionGestureDirection direction = _type ? XWInteractiveTransitionGestureDirectionUp : XWInteractiveTransitionGestureDirectionRight;
-    [self xw_registerToInteractiveTransitionWithDirection:direction transitonBlock:^{
+    [self xw_registerToInteractiveTransitionWithDirection:direction transitonBlock:^(CGPoint startPoint){
         [weakSelf xw_transition];
     } edgeSpacing:_type ? 0 : 80];
 }

@@ -14,7 +14,7 @@
     [super viewDidLoad];
     [self.button setTitle:@"点我或向下滑动" forState:UIControlStateNormal];
     __weak typeof(self)weakSelf = self;
-    [self xw_registerBackInteractiveTransitionWithDirection:XWInteractiveTransitionGestureDirectionDown transitonBlock:^{
+    [self xw_registerBackInteractiveTransitionWithDirection:XWInteractiveTransitionGestureDirectionDown transitonBlock:^(CGPoint startPoint){
         [weakSelf xw_transiton];
     } edgeSpacing:0];
 }

@@ -43,7 +43,7 @@
     [self xw_addMagicMoveEndViewGroup:@[imgView]];
     [self xw_addMagicMoveStartViewGroup:@[imgView, view1, view2]];
     __weak typeof(self)weakSelf = self;
-    [self xw_registerToInteractiveTransitionWithDirection:XWInteractiveTransitionGestureDirectionDown transitonBlock:^{
+    [self xw_registerToInteractiveTransitionWithDirection:XWInteractiveTransitionGestureDirectionDown transitonBlock:^(CGPoint startPoint){
         [weakSelf xw_transition];
     } edgeSpacing:0];
 }

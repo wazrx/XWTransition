@@ -23,6 +23,10 @@
     XWCoolTransitionAnimatorType _type;
 }
 
+- (void)dealloc{
+    NSLog(@"coolAnimator销毁了");
+}
+
 
 + (instancetype)xw_animatorWithType:(XWCoolTransitionAnimatorType)type {
     return [[self alloc] _initWithTransitionType:type];

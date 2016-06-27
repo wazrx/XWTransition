@@ -12,7 +12,7 @@
 
 @implementation UIViewController (XWTransition)
 
-- (void)xw_registerToInteractiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction transitonBlock:(dispatch_block_t)tansitionConfig edgeSpacing:(CGFloat)edgeSpacing{
+- (void)xw_registerToInteractiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction transitonBlock:(void(^)(CGPoint startPoint))tansitionConfig edgeSpacing:(CGFloat)edgeSpacing{
     if (!tansitionConfig) return;
     XWInteractiveTransition *interactive = [XWInteractiveTransition xw_interactiveTransitionWithDirection:direction config:tansitionConfig edgeSpacing:edgeSpacing];
     [interactive xw_addPanGestureForView:self.view to:YES];
@@ -20,7 +20,7 @@
     
 }
 
-- (void)xw_registerBackInteractiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction transitonBlock:(dispatch_block_t)tansitionConfig edgeSpacing:(CGFloat)edgeSpacing{
+- (void)xw_registerBackInteractiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction transitonBlock:(void(^)(CGPoint startPoint))tansitionConfig edgeSpacing:(CGFloat)edgeSpacing{
     if (!tansitionConfig) return;
     XWInteractiveTransition *interactive = [XWInteractiveTransition xw_interactiveTransitionWithDirection:direction config:tansitionConfig edgeSpacing:edgeSpacing];
     [interactive xw_addPanGestureForView:self.view to:NO];
