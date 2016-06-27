@@ -16,6 +16,9 @@
 - (void)xw_pushViewController:(UIViewController *)viewController withAnimator:(XWTransitionAnimator *)animator {
     if (!viewController) return;
     if (!animator) animator = [XWTransitionAnimator new];
+    if (self.delegate) {
+        [animator setValue:self.delegate forKey:@"lastDelegate"];
+    }
     self.delegate = animator;
     XWInteractiveTransition *toInteractive = objc_getAssociatedObject(self.topViewController, &kXWToInteractiveKey);
     if (toInteractive) {

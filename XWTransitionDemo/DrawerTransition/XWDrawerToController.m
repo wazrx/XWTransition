@@ -17,7 +17,7 @@
     self.button.hidden = YES;
     XWInteractiveTransitionGestureDirection direction = _type ? XWInteractiveTransitionGestureDirectionDown : XWInteractiveTransitionGestureDirectionLeft;
     __weak typeof(self)weakSelf = self;
-    [self xw_registerBackInteractiveTransitionWithDirection:direction transitonBlock:^{
+    [self xw_registerBackInteractiveTransitionWithDirection:direction transitonBlock:^(CGPoint startPoint){
         [weakSelf xw_transiton];
     } edgeSpacing:0];
     return;

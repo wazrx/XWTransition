@@ -34,7 +34,7 @@
     [self.button setTitle:@"点我或向上滑动" forState:UIControlStateNormal];
     [self xw_addMagicMoveEndViewGroup:@[imgView, view1, view2]];
     __weak typeof(self)weakSelf = self;
-    [self xw_registerBackInteractiveTransitionWithDirection:XWInteractiveTransitionGestureDirectionUp transitonBlock:^{
+    [self xw_registerBackInteractiveTransitionWithDirection:XWInteractiveTransitionGestureDirectionUp transitonBlock:^(CGPoint startPoint){
         [weakSelf xw_transiton];
     } edgeSpacing:0];
 }

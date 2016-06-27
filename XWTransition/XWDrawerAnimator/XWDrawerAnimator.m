@@ -228,7 +228,7 @@
     }else{
         //第二种情况，toView没有添加手势，我们需要创建一个
         __weak typeof(self)weakSelf = self;
-        XWInteractiveTransition *backTransition = [XWInteractiveTransition xw_interactiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)_direction config:^{
+        XWInteractiveTransition *backTransition = [XWInteractiveTransition xw_interactiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)_direction config:^(CGPoint startPoint){
             weakSelf.backConfig();
         } edgeSpacing:0];
         backTransition.panRatioBaseValue = _vertical ? containerView.frame.size.height : containerView.frame.size.width;

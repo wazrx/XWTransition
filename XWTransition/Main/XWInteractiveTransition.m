@@ -18,7 +18,7 @@ typedef struct {
 
 @interface XWInteractiveTransition ()<UIGestureRecognizerDelegate>
 @property (nonatomic, assign) XWInteractiveTransitionGestureDirection direction;
-@property (nonatomic, copy) dispatch_block_t config;
+@property (nonatomic, copy) void(^config)(CGPoint startPoint);
 @property (nonatomic, strong) CADisplayLink *timer;
 @property (nonatomic, assign) CGFloat percent;
 @property (nonatomic, assign) CGFloat timeDis;
@@ -31,11 +31,11 @@ typedef struct {
 
 @implementation XWInteractiveTransition
 
-+ (instancetype)xw_interactiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction config:(dispatch_block_t)config edgeSpacing:(CGFloat)edgeSpacing{
++ (instancetype)xw_interactiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction config:(void(^)(CGPoint startPoint))config edgeSpacing:(CGFloat)edgeSpacing{
     return [[self alloc] _initInteractiveTransitionWithDirection:direction config:config edgeSpacing:edgeSpacing];
 }
 
-- (instancetype)_initInteractiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction config:(dispatch_block_t)config edgeSpacing:(CGFloat)edgeSpacing{
+- (instancetype)_initInteractiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction config:(void(^)(CGPoint startPoint))config edgeSpacing:(CGFloat)edgeSpacing{
     self = [super init];
     if (self) {
         _config = config;
@@ -99,9 +99,10 @@ typedef struct {
             if (_delegateFlag.willBegin) {
                 [_delegate xw_interactiveTransitionWillBegin:self];
             }
+            CGPoint startPoint = [panGesture locationInView:panGesture.view];
             _interation = YES;
             if (_config) {
-                _config();
+                _config(startPoint);
             }
             [self _xw_caculateMovePercentForGesture:panGesture];
             break;
