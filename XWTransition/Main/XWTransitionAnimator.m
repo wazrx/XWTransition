@@ -56,20 +56,12 @@ typedef void(^XWTransitionAnimationConfig)(id<UIViewControllerContextTransitioni
 @property (nonatomic, strong) XWInteractiveTransition *toInteractive;
 @property (nonatomic, strong) XWInteractiveTransition *backInteractive;
 @property (nonatomic, assign) UINavigationControllerOperation operation;
-@property (nonatomic, weak) id lastDelegate;
-@property (nonatomic, weak) UINavigationController *saveNavigationController;
 @property (nonatomic, assign) BOOL toType;
 
 @end
 
 @implementation XWTransitionAnimator
 
-- (void)dealloc{
-    if (_saveNavigationController && _lastDelegate) {
-        _saveNavigationController.delegate = _lastDelegate;
-    }
-    _lastDelegate = nil;
-}
 
 - (instancetype)init
 {
@@ -144,7 +136,6 @@ typedef void(^XWTransitionAnimationConfig)(id<UIViewControllerContextTransitioni
 
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
     _operation = operation;
-    _saveNavigationController = navigationController;
     return operation == UINavigationControllerOperationPush ? self.toTransition : self.backTranstion;
 }
 

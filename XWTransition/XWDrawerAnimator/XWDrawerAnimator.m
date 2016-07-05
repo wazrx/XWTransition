@@ -91,10 +91,10 @@
     } completion:^(BOOL finished) {
         if ([transitionContext transitionWasCancelled]) {
             [fromTempView removeFromSuperview];
-            fromVC.view.hidden = NO;
         }else{
             fromVC.view.userInteractionEnabled = NO;
         }
+        fromVC.view.hidden = NO;
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }];
     

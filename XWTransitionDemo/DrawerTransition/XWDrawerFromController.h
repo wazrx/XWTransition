@@ -8,7 +8,7 @@
 
 #import "XWBasicFromController.h"
 
-@interface XWDrawerFromController : XWBasicFromController
+@interface XWDrawerFromController : XWBasicFromController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, assign) NSInteger type;
 

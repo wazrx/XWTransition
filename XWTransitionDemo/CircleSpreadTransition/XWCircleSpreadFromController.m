@@ -22,6 +22,7 @@
     self.button.bounds = CGRectMake(0, 0, 40, 40);
     self.button.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
     self.button.layer.cornerRadius = 20;
+    
 }
 
 - (void)xw_transition{

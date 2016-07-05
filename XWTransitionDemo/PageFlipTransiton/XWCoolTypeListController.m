@@ -8,6 +8,7 @@
 
 #import "XWCoolTypeListController.h"
 #import "XWCoolFromController.h"
+#import "XWCoolAnimator.h"
 
 @implementation XWCoolTypeListController
 

@@ -7,6 +7,7 @@
 //
 
 #import "XWDrawerToController.h"
+#import "XWCoolAnimator.h"
 
 @implementation XWDrawerToController
 
@@ -20,7 +21,6 @@
     [self xw_registerBackInteractiveTransitionWithDirection:direction transitonBlock:^(CGPoint startPoint){
         [weakSelf xw_transiton];
     } edgeSpacing:0];
-    return;
 }
 
 @end

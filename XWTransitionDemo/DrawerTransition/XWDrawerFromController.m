@@ -37,7 +37,8 @@
     XWDrawerAnimatorDirection direction = _type ? XWDrawerAnimatorDirectionBottom : XWDrawerAnimatorDirectionLeft;
     CGFloat distance = _type ? 450 : 250;
     XWDrawerAnimator *animator = [XWDrawerAnimator xw_animatorWithDirection:direction moveDistance:distance];
-    animator.toDuration = animator.backDuration = 0.5;
+    animator.toDuration = 0.5;
+    animator.backDuration = 0.5;
     if (_type) {
         animator.flipEnable = YES;
     }else{
@@ -62,6 +63,26 @@
     }else{
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"test"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
+        cell.textLabel.text = @"测试";
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"选中了%zd", indexPath.row);
+    [self xw_transition];
 }
 
 @end
