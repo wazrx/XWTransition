@@ -66,6 +66,8 @@
     XWTransitionAnimator *animator = objc_getAssociatedObject(self.topViewController, &kXWAnimatorKey);
     if (animator) {
         self.delegate = animator;
+    }else{
+        self.delegate = nil;
     }
 }
 
