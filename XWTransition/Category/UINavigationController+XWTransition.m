@@ -66,8 +66,6 @@
     XWTransitionAnimator *animator = objc_getAssociatedObject(self.topViewController, &kXWAnimatorKey);
     if (animator) {
         self.delegate = animator;
-    }else{
-        self.delegate = nil;
     }
 }
 
@@ -75,8 +73,6 @@
     XWTransitionAnimator *animator = objc_getAssociatedObject(viewController, &kXWAnimatorKey);
     if (animator) {
         self.delegate = animator;
-    }else{
-        self.delegate = nil;
     }
     [self _xw_pushViewController:viewController animated:animated];
 }
