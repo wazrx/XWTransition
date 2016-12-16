@@ -7,6 +7,7 @@
 //
 
 #import "XWCoolAnimator+XWExplode.h"
+#import "UIView+Snapshot.h"
 
 @implementation XWCoolAnimator (XWExplode)
 
@@ -31,11 +32,18 @@
     NSMutableArray *snapshots = [NSMutableArray new];
     CGFloat xNum = 10.0f;
     CGFloat yNum = xNum * size.height / size.width;
-    UIView *fromViewSnapshot = [fromView snapshotViewAfterScreenUpdates:NO];
+    UIView *fromViewSnapshot = [UIView new];
+    UIImage *fromImage = fromVC.view.snapshotImage;
+    fromViewSnapshot.contentImage = fromImage;
+    CGFloat fromWidth = fromVC.view.bounds.size.width;
+    CGFloat fromHeight = fromVC.view.bounds.size.height;
     for (CGFloat x=0; x < size.width; x+= size.width / xNum) {
         for (CGFloat y=0; y < size.height; y+= size.height / yNum) {
             CGRect snapshotRegion = CGRectMake(x, y, size.width / xNum, size.height / yNum);
-            UIView *snapshot = [fromViewSnapshot resizableSnapshotViewFromRect:snapshotRegion  afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
+            UIView *snapshot = [UIView new];
+            snapshot.contentImage = fromImage;
+            CGRect contentRect = CGRectMake(x / fromWidth, y / fromHeight, size.width / xNum / fromWidth, size.height / yNum / fromHeight);
+            snapshot.layer.contentsRect = contentRect;
             snapshot.frame = snapshotRegion;
             [containerView addSubview:snapshot];
             [snapshots addObject:snapshot];

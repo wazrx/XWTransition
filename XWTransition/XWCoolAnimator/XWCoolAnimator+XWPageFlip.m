@@ -7,18 +7,18 @@
 //
 
 #import "XWCoolAnimator+XWPageFlip.h"
+#import "UIView+Snapshot.h"
 #import <objc/runtime.h>
 
 static NSString *const kPageFlipTempViewKey = @"kPageFlipTempViewKey";
 
 @implementation XWCoolAnimator (XWPageFlip)
 
-
-
 - (void)xw_setPageFlipToAnimation:(id<UIViewControllerContextTransitioning>)transitionContext {
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *tempView = [fromVC.view snapshotViewAfterScreenUpdates:NO];
+    UIView *tempView = [UIView new];
+    tempView.contentImage = fromVC.view.snapshotImage;
     tempView.frame = fromVC.view.frame;
     UIView *containerView = [transitionContext containerView];
     [containerView addSubview:toVC.view];

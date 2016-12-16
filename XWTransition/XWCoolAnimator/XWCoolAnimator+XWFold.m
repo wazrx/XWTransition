@@ -7,6 +7,7 @@
 //
 
 #import "XWCoolAnimator+XWFold.h"
+#import "UIView+Snapshot.h"
 
 @implementation XWCoolAnimator (XWFold)
 
@@ -36,21 +37,23 @@
     float foldWidth = size.width * 0.5 / (float)self.foldCount ;
     NSMutableArray* fromViewFolds = [NSMutableArray new];
     NSMutableArray* toViewFolds = [NSMutableArray new];
+    UIImage *fromImage = fromView.snapshotImage;
+    UIImage *toImage = toView.snapshotImage;
     for (int i=0 ;i<self.foldCount; i++){
         float offset = (float)i * foldWidth * 2;
-        UIView *leftFromViewFold = [self _xw_createSnapshotFromView:fromView afterUpdates:NO location:offset left:YES];
+        UIView *leftFromViewFold = [self _xw_createSnapshotFromView:fromView location:offset left:YES image:fromImage];
         leftFromViewFold.layer.position = CGPointMake(offset, size.height/2);
         [fromViewFolds addObject:leftFromViewFold];
         [leftFromViewFold.subviews[1] setAlpha:0.0];
-        UIView *rightFromViewFold = [self _xw_createSnapshotFromView:fromView afterUpdates:NO location:offset + foldWidth left:NO];
+        UIView *rightFromViewFold = [self _xw_createSnapshotFromView:fromView location:offset + foldWidth left:NO image:fromImage];
         rightFromViewFold.layer.position = CGPointMake(offset + foldWidth * 2, size.height/2);
         [fromViewFolds addObject:rightFromViewFold];
         [rightFromViewFold.subviews[1] setAlpha:0.0];
-        UIView *leftToViewFold = [self _xw_createSnapshotFromView:toView afterUpdates:YES location:offset left:YES];
+        UIView *leftToViewFold = [self _xw_createSnapshotFromView:toView location:offset left:YES image:toImage];
         leftToViewFold.layer.position = CGPointMake(!flag ? size.width : 0.0, size.height/2);
         leftToViewFold.layer.transform = CATransform3DMakeRotation(M_PI_2, 0.0, 1.0, 0.0);
         [toViewFolds addObject:leftToViewFold];
-        UIView *rightToViewFold = [self _xw_createSnapshotFromView:toView afterUpdates:YES location:offset + foldWidth left:NO];
+        UIView *rightToViewFold = [self _xw_createSnapshotFromView:toView location:offset + foldWidth left:NO image:toImage];
         rightToViewFold.layer.position = CGPointMake(!flag ? size.width : 0.0, size.height/2);
         rightToViewFold.layer.transform = CATransform3DMakeRotation(-M_PI_2, 0.0, 1.0, 0.0);
         [toViewFolds addObject:rightToViewFold];
@@ -95,24 +98,16 @@
         [transitionContext completeTransition:transitionFinished];
     }];
 }
-- (UIView *)_xw_createSnapshotFromView:(UIView *)view afterUpdates:(BOOL)afterUpdates location:(CGFloat)offset left:(BOOL)left {
+- (UIView *)_xw_createSnapshotFromView:(UIView *)view location:(CGFloat)offset left:(BOOL)left image:(UIImage *)image{
     
     CGSize size = view.frame.size;
     UIView *containerView = view.superview;
     float foldWidth = size.width * 0.5 / (float)self.foldCount ;
-    UIView* snapshotView;
-    if (!afterUpdates) {
-        CGRect snapshotRegion = CGRectMake(offset, 0.0, foldWidth, size.height);
-        snapshotView = [view resizableSnapshotViewFromRect:snapshotRegion  afterScreenUpdates:afterUpdates withCapInsets:UIEdgeInsetsZero];
-        
-    } else {
-        snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, foldWidth, size.height)];
-        snapshotView.backgroundColor = view.backgroundColor;
-        CGRect snapshotRegion = CGRectMake(offset, 0.0, foldWidth, size.height);
-        UIView* snapshotView2 = [view resizableSnapshotViewFromRect:snapshotRegion  afterScreenUpdates:afterUpdates withCapInsets:UIEdgeInsetsZero];
-        [snapshotView addSubview:snapshotView2];
-        
-    }
+    UIView *snapshotView = [UIView new];
+    CGRect snapshotRegion = CGRectMake(offset, 0.0, foldWidth, size.height);
+    snapshotView.frame = snapshotRegion;
+    snapshotView.contentImage = image;
+    snapshotView.layer.contentsRect = CGRectMake(offset / size.width, 0.0, foldWidth / size.width, 1.0f);
     UIView* snapshotWithShadowView = [self _xw_addShadowToView:snapshotView reverse:left];
     [containerView addSubview:snapshotWithShadowView];
     snapshotWithShadowView.layer.anchorPoint = CGPointMake( left ? 0.0 : 1.0, 0.5);

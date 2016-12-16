@@ -8,6 +8,7 @@
 
 #import "XWDrawerAnimator.h"
 #import "XWInteractiveTransition.h"
+#import "UIView+Snapshot.h"
 #import <objc/runtime.h>
 
 @interface XWDrawerAnimator ()
@@ -48,7 +49,8 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView = [transitionContext containerView];
-    UIView *fromTempView = [fromVC.view snapshotViewAfterScreenUpdates:NO];
+    UIView *fromTempView = [UIView new];
+    fromTempView.contentImage = fromVC.view.snapshotImage;
     _toFromTempView = fromTempView;
     fromTempView.frame = fromVC.view.frame;
     [containerView addSubview:fromTempView];

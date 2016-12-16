@@ -34,7 +34,7 @@
 
 @end
 
-@interface XWFilterTransitionView ()<GLKViewDelegate>
+@interface XWFilterTransitionView ()<GLKViewDelegate, CAAnimationDelegate>
 @property (nonatomic, weak) _XWDisplayRatioLayer *ratioLayer;
 @property (nonatomic, assign) CGFloat ratio;
 @property (nonatomic, copy) CIImage *(^animationConfig)(CGFloat ratio, CIImage *fromImg, CIImage * toImg, CIFilter * filter);

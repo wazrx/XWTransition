@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B9008F51E03B0AC007B164B /* UIView+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9008F41E03B0AC007B164B /* UIView+Snapshot.m */; };
 		8B16754C1D0A7466003C4B4F /* p2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 8B16754A1D0A7466003C4B4F /* p2.JPG */; };
 		8B16754D1D0A7466003C4B4F /* p1.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 8B16754B1D0A7466003C4B4F /* p1.JPG */; };
 		8B184F3F1D12545900513E74 /* XWBasicListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B184F3E1D12545900513E74 /* XWBasicListController.m */; };
@@ -75,6 +76,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B9008F31E03B0AC007B164B /* UIView+Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Snapshot.h"; sourceTree = "<group>"; };
+		3B9008F41E03B0AC007B164B /* UIView+Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Snapshot.m"; sourceTree = "<group>"; };
 		8B16754A1D0A7466003C4B4F /* p2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = p2.JPG; sourceTree = "<group>"; };
 		8B16754B1D0A7466003C4B4F /* p1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = p1.JPG; sourceTree = "<group>"; };
 		8B184F3D1D12545900513E74 /* XWBasicListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWBasicListController.h; sourceTree = "<group>"; };
@@ -355,6 +358,8 @@
 				8BE090131D168D9500D1DFFA /* UINavigationController+XWTransition.m */,
 				8BE090141D168D9500D1DFFA /* UIViewController+XWTransition.h */,
 				8BE090151D168D9500D1DFFA /* UIViewController+XWTransition.m */,
+				3B9008F31E03B0AC007B164B /* UIView+Snapshot.h */,
+				3B9008F41E03B0AC007B164B /* UIView+Snapshot.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -485,7 +490,7 @@
 		8B72B3081D09B1B000DABB36 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = wazrx;
 				TargetAttributes = {
 					8B72B30F1D09B1B000DABB36 = {
@@ -552,6 +557,7 @@
 				8BE090501D168D9600D1DFFA /* UINavigationController+XWTransition.m in Sources */,
 				8B1C84641D0E59BB00A37149 /* XWCoolToController.m in Sources */,
 				8B1C84611D0E59AB00A37149 /* XWCoolFromController.m in Sources */,
+				3B9008F51E03B0AC007B164B /* UIView+Snapshot.m in Sources */,
 				8B72B31B1D09B1B000DABB36 /* XWTransitionTypeListController.m in Sources */,
 				8B72B3181D09B1B000DABB36 /* AppDelegate.m in Sources */,
 				8BE090531D168D9600D1DFFA /* XWTransitionAnimator.m in Sources */,
@@ -631,8 +637,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -676,8 +684,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -7,7 +7,7 @@
 //
 
 #import "XWCoolAnimator+XWMiddlePageFlip.h"
-
+#import "UIView+Snapshot.h"
 
 @implementation XWCoolAnimator (XWMiddlePageFlip)
 
@@ -73,6 +73,7 @@
 
 - (NSArray<UIView *> *)_xw_animationSnapFlipView:(UIView *)view withDirection:(XWMiddlePageFlipDirection)direction update:(BOOL)update{
     UIView *containerView = view.superview;
+    CGSize size = view.bounds.size;
     CGRect rectOne = CGRectZero;
     CGRect rectTwo = CGRectZero;
     switch (direction) {
@@ -89,10 +90,14 @@
             break;
         }
     }
-    UIView *viewOne = [view resizableSnapshotViewFromRect:rectOne afterScreenUpdates:update withCapInsets:UIEdgeInsetsZero];
-    UIView *viewTwo = [view resizableSnapshotViewFromRect:rectTwo afterScreenUpdates:update withCapInsets:UIEdgeInsetsZero];
+    UIView *viewOne = [UIView new];
+    viewOne.contentImage = view.snapshotImage;
+    UIView *viewTwo = [UIView new];
+    viewTwo.contentImage = viewOne.contentImage;
     viewOne.frame = rectOne;
     viewTwo.frame = rectTwo;
+    viewOne.layer.contentsRect = CGRectMake(rectOne.origin.x / size.width, rectOne.origin.y / size.height, rectOne.size.width / size.width, rectOne.size.height / size.height);
+    viewTwo.layer.contentsRect = CGRectMake(rectTwo.origin.x / size.width, rectTwo.origin.y / size.height, rectTwo.size.width / size.width, rectTwo.size.height / size.height);
     [containerView addSubview:viewOne];
     [containerView addSubview:viewTwo];
     return @[viewOne, viewTwo];

@@ -8,7 +8,7 @@
 
 #import "XWCircleSpreadAnimator.h"
 
-@interface XWCircleSpreadAnimator ()
+@interface XWCircleSpreadAnimator ()<CAAnimationDelegate>
 @property (nonatomic, assign) CGPoint startPoint;
 @property (nonatomic, assign) CGFloat startRadius;
 @property (nonatomic, strong) UIBezierPath *startPath;

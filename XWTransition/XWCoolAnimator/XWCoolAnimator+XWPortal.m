@@ -7,6 +7,7 @@
 //
 
 #import "XWCoolAnimator+XWPortal.h"
+#import "UIView+Snapshot.h"
 
 @implementation XWCoolAnimator (XWPortal)
 
@@ -17,17 +18,23 @@
     UIView *toView = toVC.view;
     UIView *fromView = fromVC.view;
     UIView *containerView = [transitionContext containerView];
-    UIView *toViewSnapshot = [toView snapshotViewAfterScreenUpdates:YES];
+    UIView *toViewSnapshot = [UIView new];
+    toViewSnapshot.contentImage =  toView.snapshotImage;
+    toViewSnapshot.frame = containerView.bounds;
     CATransform3D scale = CATransform3DIdentity;
     toViewSnapshot.layer.transform = CATransform3DScale(scale, 0.8, 0.8, 1);
     [containerView addSubview:toViewSnapshot];
     [containerView sendSubviewToBack:toViewSnapshot];
     CGRect leftSnapshotRegion = CGRectMake(0, 0, fromView.frame.size.width / 2, fromView.frame.size.height);
-    UIView *leftHandView = [fromView resizableSnapshotViewFromRect:leftSnapshotRegion  afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
+    UIView *leftHandView = [UIView new];
+    leftHandView.contentImage = fromView.snapshotImage;
+    leftHandView.layer.contentsRect = CGRectMake(0, 0, 0.5, 1.0);
     leftHandView.frame = leftSnapshotRegion;
     [containerView addSubview:leftHandView];
     CGRect rightSnapshotRegion = CGRectMake(fromView.frame.size.width / 2, 0, fromView.frame.size.width / 2, fromView.frame.size.height);
-    UIView *rightHandView = [fromView resizableSnapshotViewFromRect:rightSnapshotRegion  afterScreenUpdates:NO withCapInsets:UIEdgeInsetsZero];
+    UIView *rightHandView = [UIView new];
+    rightHandView.contentImage = leftHandView.contentImage;
+    rightHandView.layer.contentsRect = CGRectMake(0.5, 0, 0.5, 1.0);
     rightHandView.frame = rightSnapshotRegion;
     [containerView addSubview:rightHandView];
     fromView.hidden = YES;
@@ -64,12 +71,16 @@
     toView.frame = CGRectOffset(toView.frame, toView.frame.size.width, 0);
     [containerView addSubview:toView];
     CGRect leftSnapshotRegion = CGRectMake(0, 0, toView.frame.size.width / 2, toView.frame.size.height);
-    UIView *leftHandView = [toView resizableSnapshotViewFromRect:leftSnapshotRegion  afterScreenUpdates:YES withCapInsets:UIEdgeInsetsZero];
+    UIView *leftHandView = [UIView new];
+    leftHandView.contentImage = toView.snapshotImage;
+    leftHandView.layer.contentsRect = CGRectMake(0, 0, 0.5, 1.0);
     leftHandView.frame = leftSnapshotRegion;
     leftHandView.frame = CGRectOffset(leftHandView.frame, - leftHandView.frame.size.width, 0);
     [containerView addSubview:leftHandView];
     CGRect rightSnapshotRegion = CGRectMake(toView.frame.size.width / 2, 0, toView.frame.size.width / 2, toView.frame.size.height);
-    UIView *rightHandView = [toView resizableSnapshotViewFromRect:rightSnapshotRegion  afterScreenUpdates:YES withCapInsets:UIEdgeInsetsZero];
+    UIView *rightHandView = [UIView new];
+    rightHandView.contentImage = leftHandView.contentImage;
+    rightHandView.layer.contentsRect = CGRectMake(0.5, 0, 0.5, 1.0);
     rightHandView.frame = rightSnapshotRegion;
     rightHandView.frame = CGRectOffset(rightHandView.frame, rightHandView.frame.size.width, 0);
     [containerView addSubview:rightHandView];
