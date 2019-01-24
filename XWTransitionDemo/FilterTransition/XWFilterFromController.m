@@ -23,9 +23,12 @@
     [self.button setTitle:[NSString stringWithFormat:@"点我或向%@滑动", directionNames[_type]] forState:UIControlStateNormal];
     [self.button addTarget:self action:@selector(xw_transition) forControlEvents:UIControlEventTouchUpInside];
     __weak typeof(self)weakSelf = self;
-    [self xw_registerToInteractiveTransitionWithDirection:[self xw_getDirectionWithName:directionNames[_type]] transitonBlock:^(CGPoint startPoint){
+    XWInteractiveTransition *interactive = [self xw_registerToInteractiveTransitionWithDirection:[self xw_getDirectionWithName:directionNames[_type]] transitonBlock:^(CGPoint startPoint){
         [weakSelf xw_transition];
     } edgeSpacing:0];
+    //添加惯性效果
+    interactive.inertiaRatio = 0.7;
+    interactive.inertiaDuration = 0.7;
 }
 
 - (void)xw_transition{

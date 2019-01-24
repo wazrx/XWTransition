@@ -112,6 +112,38 @@ typedef struct {
             break;
         }
         case UIGestureRecognizerStateEnded:{
+            //手势的滑动速率
+            CGPoint velocity = [panGesture velocityInView:nil];
+            CGFloat speed = 0;
+            switch (_direction) {
+                case XWInteractiveTransitionGestureDirectionLeft:
+                    speed = -velocity.x;
+                    break;
+                case XWInteractiveTransitionGestureDirectionRight:
+                    speed = velocity.x;
+                    break;
+                case XWInteractiveTransitionGestureDirectionUp:
+                    speed = -velocity.y;
+                    break;
+                case XWInteractiveTransitionGestureDirectionDown:
+                    speed = velocity.y;
+                    break;
+                default:
+                    break;
+            }
+            //滑动速度，即每秒的滑动距离
+            speed = speed > 0 ? speed : 0;
+            //惯性的比例
+            CGFloat ratio = _inertiaRatio;
+            ratio = ratio > 1 ? 1 : ratio;
+            ratio = ratio < 0 ? 0 : ratio;
+            //惯性的持续时间
+            CGFloat duration = _inertiaDuration > 0 ? _inertiaDuration : 0;
+            //根据惯性比例及持续时间算出的惯性滑动距离
+            CGFloat offset = speed * ratio * duration;
+            //更新Percent
+            [self _xw_caculateMovePercentForGesture:panGesture offset:offset];
+            
             //判断是否需要timer
             if (!_timerEable) {
                 _percent >= 0.5 ? [self _xw_finish] : [self _xw_cancle];
@@ -164,6 +196,39 @@ typedef struct {
             break;
         case XWInteractiveTransitionGestureDirectionDown:{
             CGFloat transitionY = [panGesture translationInView:panGesture.view].y;
+            _percent += transitionY / baseValue;
+        }
+            break;
+    }
+    [panGesture setTranslation:CGPointZero inView:panGesture.view];
+}
+
+- (void)_xw_caculateMovePercentForGesture:(UIPanGestureRecognizer *)panGesture offset:(CGFloat)offset {
+    static CGFloat baseValue = 0.0f;
+    baseValue = _panRatioBaseValue > 0 ? _panRatioBaseValue : _vertical ? panGesture.view.frame.size.height : panGesture.view.frame.size.width;
+    //手势百分比
+    switch (_direction) {
+        case XWInteractiveTransitionGestureDirectionLeft:{
+            CGFloat transitionX = -[panGesture translationInView:panGesture.view].x;
+            transitionX += offset;
+            _percent += transitionX / baseValue;
+        }
+            break;
+        case XWInteractiveTransitionGestureDirectionRight:{
+            CGFloat transitionX = [panGesture translationInView:panGesture.view].x;
+            transitionX += offset;
+            _percent += transitionX / baseValue;
+        }
+            break;
+        case XWInteractiveTransitionGestureDirectionUp:{
+            CGFloat transitionY = -[panGesture translationInView:panGesture.view].y;
+            transitionY += offset;
+            _percent += transitionY / baseValue;
+        }
+            break;
+        case XWInteractiveTransitionGestureDirectionDown:{
+            CGFloat transitionY = [panGesture translationInView:panGesture.view].y;
+            transitionY += offset;
             _percent += transitionY / baseValue;
         }
             break;
