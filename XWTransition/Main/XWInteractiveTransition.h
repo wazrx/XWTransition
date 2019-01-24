@@ -44,6 +44,11 @@ typedef NS_ENUM(NSUInteger, XWInteractiveTransitionGestureDirection) {
 /**设置该值可改变计算手势百分比的基准，手势基准的原理：百分比 = 拖动距离 / panRatioBaseValue， 默认情况下水平方向panRatioBaseValue为手势所在view的宽度，垂直方向为手势所在view的高度，通常无需更改该值，在某些特殊情况下，如果想要调整手势的速率可以更改该值，比如让手势速率加倍，可以调整该值为view宽度高度的一半*/
 @property (nonatomic, assign) CGFloat panRatioBaseValue;
 
+/**惯性滑动的比率，取值范围为0~1，值越大则惯性滑动的距离越大，0表示没有惯性，默认为0*/
+@property (nonatomic, assign) CGFloat inertiaRatio;
+/**惯性滑动的时间，默认为0*/
+@property (nonatomic, assign) CGFloat inertiaDuration;
+
 + (instancetype)xw_interactiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction config:(void(^)(CGPoint startPoint))config edgeSpacing:(CGFloat)edgeSpacing;
 
 - (void)xw_addPanGestureForView:(UIView *)view to:(BOOL)flag;

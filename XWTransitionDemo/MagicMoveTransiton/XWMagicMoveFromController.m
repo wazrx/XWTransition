@@ -43,9 +43,12 @@
     [self xw_addMagicMoveEndViewGroup:@[imgView]];
     [self xw_addMagicMoveStartViewGroup:@[imgView, view1, view2]];
     __weak typeof(self)weakSelf = self;
-    [self xw_registerToInteractiveTransitionWithDirection:XWInteractiveTransitionGestureDirectionDown transitonBlock:^(CGPoint startPoint){
+    XWInteractiveTransition *interactive = [self xw_registerToInteractiveTransitionWithDirection:XWInteractiveTransitionGestureDirectionDown transitonBlock:^(CGPoint startPoint){
         [weakSelf xw_transition];
     } edgeSpacing:0];
+    //添加惯性效果
+    interactive.inertiaRatio = 0.5;
+    interactive.inertiaDuration = 0.8;
 }
 
 - (void)xw_setImage:(UIImage *)img {

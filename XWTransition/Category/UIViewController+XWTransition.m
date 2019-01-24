@@ -12,21 +12,24 @@
 
 @implementation UIViewController (XWTransition)
 
-- (void)xw_registerToInteractiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction transitonBlock:(void(^)(CGPoint startPoint))tansitionConfig edgeSpacing:(CGFloat)edgeSpacing{
-    if (!tansitionConfig) return;
+- (XWInteractiveTransition *)xw_registerToInteractiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction transitonBlock:(void(^)(CGPoint startPoint))tansitionConfig edgeSpacing:(CGFloat)edgeSpacing{
+    if (!tansitionConfig) return nil;
     XWInteractiveTransition *interactive = [XWInteractiveTransition xw_interactiveTransitionWithDirection:direction config:tansitionConfig edgeSpacing:edgeSpacing];
     [interactive xw_addPanGestureForView:self.view to:YES];
     objc_setAssociatedObject(self, &kXWToInteractiveKey, interactive, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
+    return interactive;
 }
 
-- (void)xw_registerBackInteractiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction transitonBlock:(void(^)(CGPoint startPoint))tansitionConfig edgeSpacing:(CGFloat)edgeSpacing{
-    if (!tansitionConfig) return;
+- (XWInteractiveTransition *)xw_registerBackInteractiveTransitionWithDirection:(XWInteractiveTransitionGestureDirection)direction transitonBlock:(void(^)(CGPoint startPoint))tansitionConfig edgeSpacing:(CGFloat)edgeSpacing{
+    if (!tansitionConfig) return nil;
     XWInteractiveTransition *interactive = [XWInteractiveTransition xw_interactiveTransitionWithDirection:direction config:tansitionConfig edgeSpacing:edgeSpacing];
     [interactive xw_addPanGestureForView:self.view to:NO];
     XWTransitionAnimator *animator = objc_getAssociatedObject(self, &kXWAnimatorKey);if (animator) {
         [animator setValue:interactive forKey:@"backInteractive"];
     }
+    
+    return interactive;
 }
 
 - (void)xw_presentViewController:(UIViewController *)viewController withAnimator:(XWTransitionAnimator *)animator {

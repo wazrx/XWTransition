@@ -18,9 +18,12 @@
     [self.button setTitle:title forState:UIControlStateNormal];
     __weak typeof(self)weakSelf = self;
     XWInteractiveTransitionGestureDirection direction = _type ? XWInteractiveTransitionGestureDirectionUp : XWInteractiveTransitionGestureDirectionRight;
-    [self xw_registerToInteractiveTransitionWithDirection:direction transitonBlock:^(CGPoint startPoint){
+    XWInteractiveTransition *interactive = [self xw_registerToInteractiveTransitionWithDirection:direction transitonBlock:^(CGPoint startPoint){
         [weakSelf xw_transition];
     } edgeSpacing:_type ? 0 : 80];
+    //添加惯性效果
+    interactive.inertiaRatio = 0.6;
+    interactive.inertiaDuration = 0.8;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
